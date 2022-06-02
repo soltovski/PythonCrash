@@ -15,6 +15,14 @@ class Ship:
         #começa cada nova nave no fundo central da tela
         self.rect.midbottom = self.screen_rect.midbottom
 
+        #flag movimentação
+        self.moving_right = False
+
+    def update(self):
+        '''atualiza a posicao da nave, baseada na movimentação da flag'''
+        if self.moving_right:
+            self.rect.x +=1 #se continuar pressionada
+
     def blitme(self):
         '''Faz surgir na tela a nave, na posição indicada'''
         self.screen.blit(self.image, self.rect)

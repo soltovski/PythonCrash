@@ -21,17 +21,30 @@ class AlienInvasion:
     def run_game(self):
         '''Loop principal do jogo'''
         while True:
-            #espera por comandos do mouse/teclado
-            for event in pygame.event.get(): #dentro loop, sempre ativo
-                if event.type == pygame.QUIT:
-                    sys.exit()
+            self._check_events()
+            self.ship.update()
+            self._update_screen()
 
-            #redesenha a tela durante cada passagem o loop while
-            self.screen.fill(self.settings.bg_color)
-            self.ship.blitme()
 
-            #refresh na tela, cria a 'ilusão' de movimento
-            pygame.display.flip()
+    def _check_events(self):
+        #responde a eventos do mouse/teclado
+        for event in pygame.event.get():  # dentro loop, sempre ativo
+            if event.type == pygame.QUIT:
+                sys.exit()
+            elif event.type == pygame.KEYDOWN:#se uma tecla é pressionada
+                if event.key == pygame.K_RIGHT:
+                    self.ship.moving_right = True
+            elif event.type == pygame.KEYUP: #tecla deixa de ser pressionada
+                if event.key == pygame.K_RIGHT:#liberou a tecla que pressionava direita
+                        self.ship.moving_right = False
+
+    def _update_screen(self):
+        # atualiza as imagens da tela e tela de fundo
+        self.screen.fill(self.settings.bg_color)
+        self.ship.blitme()
+
+        # refresh na tela, cria a 'ilusão' de movimento
+        pygame.display.flip()
 
 if __name__ == '__main__': #não executa sozinho, apenas se chamado
     #cria uma instância e roda o jogo:
