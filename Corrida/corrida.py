@@ -21,16 +21,29 @@ class Corrida:
         '''loop principal do jogo'''
         while True:
             #aguarda por eventos de teclado/mouse
-            for evento in pygame.event.get():
-                if evento.type == pygame.QUIT:
-                    sys.exit()
+            self._checa_eventos()
+            self.carro_driver.att_pos_carro()
+            self._att_tela()
 
-            #att cor de fundo durante a passagem de loop
-            self.tela.fill(self.config.cor_fundo)
-            self.carro_driver.blitme()
+    def _checa_eventos(self):
+        #responde a eventos da teclado/mouse
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                sys.exit()
+            elif evento.type == pygame.KEYDOWN:#apertou uma tecla
+                if evento.key == pygame.K_RIGHT:#a tecla da direita
+                    self.carro_driver.mov_direita = True
+            elif evento.type == pygame.KEYUP:#liberou uma tecla
+                if evento.key == pygame.K_RIGHT:#a tecla da direita
+                    self.carro_driver.mov_direita = False
 
-            #dá um refresh na tela, cria ilusão de movimento
-            pygame.display.flip()
+    def _att_tela(self):
+        # att cor de fundo durante a passagem de loop
+        self.tela.fill(self.config.cor_fundo)
+        self.carro_driver.blitme()
+
+        # dá um refresh na tela, cria ilusão de movimento
+        pygame.display.flip()
 
 if __name__ == '__main__': #faz com que os pacotes importados não executem automaticamente seus main
     #cria uma instância do jogo e a roda o jogo

@@ -15,6 +15,15 @@ class Carro:
         #começa a imagem do carro na posição central inferior da tela
         self.rect.midbottom = self.tela_rect.midbottom
 
+        #flag de movimentação
+        self.mov_direita = False
+
+    def att_pos_carro(self):
+        '''Atualiza a posicao do carro, baseada na flag de movimentação'''
+        if self.mov_direita:
+            self.rect.x += 1
+
+
     def blitme(self):
         '''Faz surgir a imagem do carro na tela'''
         self.tela.blit(self.imagem, self.rect)
