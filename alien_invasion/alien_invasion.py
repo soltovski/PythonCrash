@@ -3,6 +3,7 @@ import sys #biblioteca para controles de I/O
 import pygame
 from settings import Settings
 from ship import Ship
+from bullet import Bullet
 
 class AlienInvasion:
     '''Classe geral para gerenciar o jogo'''
@@ -51,6 +52,8 @@ class AlienInvasion:
             self.ship.moving_left = True
         elif event.key == pygame.K_q: #se pressionar ' Q'
             sys.exit() #sai do programa
+        elif event.key == pygame.K_SPACE:#se pressionar barra de espaço
+            self._fire_bullet() #dispara bala
 
     def _check_keyup_events(self,event):
         '''responde à tecla liberada'''
@@ -59,11 +62,17 @@ class AlienInvasion:
         if event.key == pygame.K_LEFT:  # liberou a tecla que pressionava esquerda
             self.ship.moving_left = False
 
+    def _fire_bullet(self):
+        '''cria uma nova bala e a adiciona ao grupo de balas'''
+        new_bullet = Bullet(self) #cria uma instancia do tipo Bullet
+        self.bullets.add(new_bullet)#addiciona ao grupo de bullets
 
     def _update_screen(self):
         # atualiza as imagens da tela e tela de fundo
         self.screen.fill(self.settings.bg_color)
         self.ship.blitme()
+        for bullet in self.bullets.sprites():
+            bullet.draw_bullet()
 
         # refresh na tela, cria a 'ilusão' de movimento
         pygame.display.flip()
