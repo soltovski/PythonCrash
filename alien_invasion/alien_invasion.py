@@ -21,12 +21,14 @@ class AlienInvasion:
         pygame.display.set_caption("Alien Invasion") #define o nome
 
         self.ship = Ship(self)
+        self.bullets = pygame.sprite.Group()
 
     def run_game(self):
         '''Loop principal do jogo'''
         while True:
             self._check_events()
             self.ship.update()
+            self.bullets.update()
             self._update_screen()
 
 
