@@ -7,6 +7,7 @@ class Ship:
         '''Inicializa a nave e seta sua posição inicial'''
         self.screen = ai_game.screen #
         self.screen_rect = ai_game.screen.get_rect()
+        self.settings = ai_game.settings
 
         #carrega a imagem da nave e captura seu rect
         self.image = pygame.image.load('images/ship.bmp') #carrega a imagem
@@ -15,13 +16,23 @@ class Ship:
         #começa cada nova nave no fundo central da tela
         self.rect.midbottom = self.screen_rect.midbottom
 
+        #armazena um valor decimal para a posicao horizontal da nave
+        self.x = float(self.rect.x)
+
         #flag movimentação
         self.moving_right = False
+        self.moving_left = False
 
     def update(self):
         '''atualiza a posicao da nave, baseada na movimentação da flag'''
+        #atualiza a posicao x da nave, do rect não
         if self.moving_right:
-            self.rect.x +=1 #se continuar pressionada
+            self.x += self.settings.ship_speed #se continuar pressionada
+        if self.moving_left:
+            self.x -= self.settings.ship_speed
+
+        #atualiza o objeto rect
+        self.rect.x = self.x
 
     def blitme(self):
         '''Faz surgir na tela a nave, na posição indicada'''

@@ -7,3 +7,6 @@ class Config:
         self.tela_lar = 600
         self.tela_alt = 750
         self.cor_fundo = (255,255,255)
+
+        #configurações do carro
+        self.carro_veloc = 0.8 #ponto flutuante

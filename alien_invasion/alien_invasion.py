@@ -32,11 +32,15 @@ class AlienInvasion:
             if event.type == pygame.QUIT:
                 sys.exit()
             elif event.type == pygame.KEYDOWN:#se uma tecla é pressionada
-                if event.key == pygame.K_RIGHT:
+                if event.key == pygame.K_RIGHT:#essa tecla é direita
                     self.ship.moving_right = True
+                elif event.key == pygame.K_LEFT:#essa tecla é esquerda
+                    self.ship.moving_left = True
             elif event.type == pygame.KEYUP: #tecla deixa de ser pressionada
                 if event.key == pygame.K_RIGHT:#liberou a tecla que pressionava direita
                         self.ship.moving_right = False
+                if event.key == pygame.K_LEFT:#liberou a tecla que pressionava esquerda
+                        self.ship.moving_left = False
 
     def _update_screen(self):
         # atualiza as imagens da tela e tela de fundo

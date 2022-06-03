@@ -15,7 +15,7 @@ class Corrida:
         self.tela = pygame.display.set_mode((self.config.tela_lar,self.config.tela_alt))
         pygame.display.set_caption("Corrida")
 
-        self.carro_driver = Carro(self)#cria obj do tipo Carro
+        self.carro_driver = Carro(self)#cria obj do tipo Carro, já passando suas propriedades
 
     def roda_jogo(self):
         '''loop principal do jogo'''
@@ -31,11 +31,15 @@ class Corrida:
             if evento.type == pygame.QUIT:
                 sys.exit()
             elif evento.type == pygame.KEYDOWN:#apertou uma tecla
-                if evento.key == pygame.K_RIGHT:#a tecla da direita
+                if evento.key == pygame.K_RIGHT:#essa tecla é direita
                     self.carro_driver.mov_direita = True
+                elif evento.key == pygame.K_LEFT:#essa tecla é esquerda
+                    self.carro_driver.mov_esquerda = True
             elif evento.type == pygame.KEYUP:#liberou uma tecla
                 if evento.key == pygame.K_RIGHT:#a tecla da direita
                     self.carro_driver.mov_direita = False
+                elif evento.key == pygame.K_LEFT:#a tecla da esquerda
+                    self.carro_driver.mov_esquerda = False
 
     def _att_tela(self):
         # att cor de fundo durante a passagem de loop
