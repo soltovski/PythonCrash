@@ -26,9 +26,9 @@ class Ship:
     def update(self):
         '''atualiza a posicao da nave, baseada na movimentação da flag'''
         #atualiza a posicao x da nave, do rect não
-        if self.moving_right:
+        if self.moving_right and self.rect.right < self.screen_rect.right:#limita borda dir
             self.x += self.settings.ship_speed #se continuar pressionada
-        if self.moving_left:
+        if self.moving_left and self.rect.left > 0: #limita borda esquerda
             self.x -= self.settings.ship_speed
 
         #atualiza o objeto rect

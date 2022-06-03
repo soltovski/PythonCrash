@@ -31,15 +31,24 @@ class Corrida:
             if evento.type == pygame.QUIT:
                 sys.exit()
             elif evento.type == pygame.KEYDOWN:#apertou uma tecla
-                if evento.key == pygame.K_RIGHT:#essa tecla é direita
-                    self.carro_driver.mov_direita = True
-                elif evento.key == pygame.K_LEFT:#essa tecla é esquerda
-                    self.carro_driver.mov_esquerda = True
+                self._checa_tecla_press(evento)
             elif evento.type == pygame.KEYUP:#liberou uma tecla
-                if evento.key == pygame.K_RIGHT:#a tecla da direita
-                    self.carro_driver.mov_direita = False
-                elif evento.key == pygame.K_LEFT:#a tecla da esquerda
-                    self.carro_driver.mov_esquerda = False
+                self._checa_tecla_lib(evento)
+
+    def _checa_tecla_press(self, evento):
+        '''responde à tecla pressionada'''
+        if evento.key == pygame.K_RIGHT:  # essa tecla é direita
+            self.carro_driver.flag_mov_direita = True
+        elif evento.key == pygame.K_LEFT:  # essa tecla é esquerda
+            self.carro_driver.flag_mov_esquerda = True
+
+    def _checa_tecla_lib(self, evento):
+        '''responde à tecla liberada'''
+        if evento.key == pygame.K_RIGHT:  # a tecla da direita
+            self.carro_driver.flag_mov_direita = False
+        elif evento.key == pygame.K_LEFT:  # a tecla da esquerda
+            self.carro_driver.flag_mov_esquerda = False
+
 
     def _att_tela(self):
         # att cor de fundo durante a passagem de loop

@@ -20,16 +20,17 @@ class Carro:
         self.x = float(self.rect.x)
 
         #flag de movimentação
-        self.mov_direita = False
-        self.mov_esquerda = False
+        self.flag_mov_direita = False
+        self.flag_mov_esquerda = False
 
     def att_pos_carro(self):
         '''Atualiza a posicao do carro, baseada na flag de movimentação'''
-        #atualiza o valor de x do carro, não do rect
-        if self.mov_direita:
+        #atualiza o valor de x do carro, não do rect:
+        #se a tecla direit está presionada E a posição x+ do carro não encontrou com a borda direita
+        if self.flag_mov_direita and self.rect.right < self.tela_rect.right:
             self.x += self.config.carro_veloc
-        elif self.mov_esquerda:
-            self.x -= self.config.carro_veloc
+        elif self.flag_mov_esquerda and self.rect.left > 0:#se a tecla esquerda está pressionada E a posição x- do
+            self.x -= self.config.carro_veloc               #carro ainda não encontrou a borda esquerda
 
         #atualiza do rect objeto de self.x
         self.rect.x = self.x
