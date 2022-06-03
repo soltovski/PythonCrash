@@ -43,6 +43,8 @@ class AlienInvasion:
             self.ship.moving_right = True
         elif event.key == pygame.K_LEFT:  # essa tecla é esquerda
             self.ship.moving_left = True
+        elif event.key == pygame.K_q: #se pressionar ' Q'
+            sys.exit() #sai do programa
 
     def _check_keyup_events(self,event):
         '''responde à tecla liberada'''

@@ -41,6 +41,8 @@ class Corrida:
             self.carro_driver.flag_mov_direita = True
         elif evento.key == pygame.K_LEFT:  # essa tecla é esquerda
             self.carro_driver.flag_mov_esquerda = True
+        elif evento.key == pygame.K_q:
+            sys.exit()
 
     def _checa_tecla_lib(self, evento):
         '''responde à tecla liberada'''
