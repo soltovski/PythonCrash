@@ -2,7 +2,7 @@ import sys
 import pygame
 from settings import Settings
 
-class Nave:
+class Nave_jogo:
     '''classe geral que gerencia comportamento do jogo'''
 
     def __init__(self):
@@ -36,5 +36,5 @@ class Nave:
 
 if __name__ == '__main__':
     #Cria uma instância do jogo e o executa
-    ai = Nave() #cria objeto do tipo Nave
+    ai = Nave_jogo() #cria objeto do tipo Nave
     ai.roda_jogo() #executa o método roda_jogo()
