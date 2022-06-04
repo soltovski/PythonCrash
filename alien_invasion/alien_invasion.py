@@ -29,15 +29,7 @@ class AlienInvasion:
         while True:
             self._check_events()
             self.ship.update()
-            self.bullets.update()
-
-            #elimina as balas que sumirem da tela
-            for bullet in self.bullets.copy():#não tem como remover um elemento dentro de uma lista em execução num for
-                #então faço o for varrer uma cópia dessa lista, assim ele pode remover os elementos do self.bullets
-                if bullet.rect.bottom <= 0:#se o fundo da figura tocar y0
-                    self.bullets.remove(bullet)
-            # print(len(self.bullets)) exibe NO TERMINAL quantos bullets existem em execução
-
+            self._update_bullets()
             self._update_screen()
 
 
@@ -75,6 +67,18 @@ class AlienInvasion:
         if len(self.bullets) < self.settings.bullets_allowed:#limita a qtd de balas em jogo
             new_bullet = Bullet(self) #cria uma instancia do tipo Bullet
             self.bullets.add(new_bullet)#addiciona ao grupo de bullets
+
+    def _update_bullets(self):
+        '''atualiza a posicao das balas e elimina as antigas'''
+        #atualiza a posicão das balas
+        self.bullets.update()
+
+        # elimina as balas que sumirem da tela
+        for bullet in self.bullets.copy():  # não tem como remover um elemento dentro de uma lista em execução num for
+            # então faço o for varrer uma cópia dessa lista, assim ele pode remover os elementos do self.bullets
+            if bullet.rect.bottom <= 0:  # se o fundo da figura tocar y0
+                self.bullets.remove(bullet)
+        # print(len(self.bullets)) exibe NO TERMINAL quantos bullets existem em execução
 
     def _update_screen(self):
         # atualiza as imagens da tela e tela de fundo
