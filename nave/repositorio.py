@@ -4,13 +4,14 @@ import sys
 #PYGAME:
 pygame.init() #- sempre que utilizar a biblioteca pygame
 
-tam_tela = pygame.display.set_mode((600,400)) #- define tamanho da tela
+tela = pygame.display.set_mode((600,400)) #- define tamanho da tela
+    # tela.fill(255,255,255) #- preenche a tela com cores RGB
 pygame.display.set_caption("Nave") #- define o nome da tela
 pygame.display.flip() # dá um refresh na tela
 
 evento = pygame.event.get() #- captura eventos de entrada de mouse/teclado
     # evento.type   #- propriedade do objeto evento que retorna seu tipo
-    #pygame.QUIT    #- evento de clicar no 'X' para sair da tela
+    # pygame.QUIT    #- evento de clicar no 'X' para sair da tela
 
 
 #SYS:

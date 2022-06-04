@@ -11,6 +11,9 @@ class Nave:
         self.tela = pygame.display.set_mode((600,400)) #representa a tela do jogo
         pygame.display.set_caption("Nave")
 
+        #define a cor de fundo da tela
+        self.cor_fundo = (230,230,230)
+
     def roda_jogo(self):
         '''loop principal'''
         while True:
@@ -18,6 +21,9 @@ class Nave:
             for evento in pygame.event.get():
                 if evento.type == pygame.QUIT:#quando clicar no X, para sair da tela
                     sys.exit()
+
+            #redesenhar a tela durante cada passagem de loop
+            self.tela.fill(self.cor_fundo)
 
             #refresh na tela
             pygame.display.flip()
