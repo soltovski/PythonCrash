@@ -7,9 +7,14 @@ pygame.init() #- sempre que utilizar a biblioteca pygame
 
 tela = pygame.display.set_mode((600,400)) #- define tamanho da tela
     # tela.fill(255,255,255)         #- preenche a tela com cores RGB
-    # tela_tect = tela.get_rect()    #- retorna o rect da tela ou outro surface
-                                     #- (tela e objetos dentro dela)
+    # tela_tect = tela.get_rect()    #- retorna o rect -origem (0,0)TOPLEFT- da tela
+                                     #- ou outro surface (tela e objetos dentro dela)
     # tela_rect.midbottom #- retorna a posição rect inferior central de um surface
+
+    #centralizar: centerx, centery, center
+    #borda: top, bottom, left, right
+    #outros: midbottom, midtop, midleft, midright
+
 pygame.display.set_caption("Nave") #- define o nome da tela
 pygame.display.flip() # dá um refresh na tela
 

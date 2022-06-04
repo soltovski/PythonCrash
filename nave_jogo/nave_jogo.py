@@ -1,6 +1,7 @@
 import sys
 import pygame
 from settings import Settings
+from ship import Ship
 
 class Nave_jogo:
     '''classe geral que gerencia comportamento do jogo'''
@@ -14,10 +15,8 @@ class Nave_jogo:
         self.tela = pygame.display.set_mode((self.settings.tela_lar,self.settings.tela_alt)) #representa a tela do jogo
         pygame.display.set_caption("Nave")
 
-        #define a cor de fundo da tela
-       # self.cor_fundo = (230,230,230)
-
-
+        self.ship = Ship(self) #cria um objeto da classe Ship, e passa self como parâmentro
+                               # que se refere à instância atual de Nave_jogo
 
 
     def roda_jogo(self):
@@ -30,6 +29,7 @@ class Nave_jogo:
 
             #redesenhar a tela durante cada passagem de loop
             self.tela.fill(self.settings.tela_cor)
+            self.ship.blitme()
 
             #refresh na tela
             pygame.display.flip()
