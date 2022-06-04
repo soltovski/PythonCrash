@@ -23,16 +23,24 @@ class Nave_jogo:
         '''loop principal'''
         while True:
             #aguarda comando do teclado/mouse
-            for evento in pygame.event.get():
-                if evento.type == pygame.QUIT:#quando clicar no X, para sair da tela
-                    sys.exit()
+            self._checa_eventos()
+            self._update_tela()
 
-            #redesenhar a tela durante cada passagem de loop
-            self.tela.fill(self.settings.tela_cor)
-            self.ship.blitme()
 
-            #refresh na tela
-            pygame.display.flip()
+    def _checa_eventos(self):
+        '''responde a eventos do mouse/teclado'''
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:  # quando clicar no X, para sair da tela
+                sys.exit()
+
+    def _update_tela(self):
+        # redesenhar a tela durante cada passagem de loop
+        self.tela.fill(self.settings.tela_cor)
+        self.ship.blitme()
+
+        # refresh na tela
+        pygame.display.flip()
+
 
 if __name__ == '__main__':
     #Cria uma instância do jogo e o executa
