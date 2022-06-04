@@ -72,8 +72,9 @@ class AlienInvasion:
 
     def _fire_bullet(self):
         '''cria uma nova bala e a adiciona ao grupo de balas'''
-        new_bullet = Bullet(self) #cria uma instancia do tipo Bullet
-        self.bullets.add(new_bullet)#addiciona ao grupo de bullets
+        if len(self.bullets) < self.settings.bullets_allowed:#limita a qtd de balas em jogo
+            new_bullet = Bullet(self) #cria uma instancia do tipo Bullet
+            self.bullets.add(new_bullet)#addiciona ao grupo de bullets
 
     def _update_screen(self):
         # atualiza as imagens da tela e tela de fundo
