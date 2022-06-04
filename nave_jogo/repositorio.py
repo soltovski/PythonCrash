@@ -24,6 +24,9 @@ pygame.image.load('imagens/ship.bmp')  #- carrega um arquivo de imagem (surface)
 evento = pygame.event.get() #- captura eventos de entrada de mouse/teclado
     # evento.type   #- propriedade do objeto evento que retorna seu tipo
     # pygame.QUIT    #- evento de clicar no 'X' para sair da tela
+    # pygame.KEYDOWN  #- alguma tecla é pressionada
+    # evento.key    #- retorna uma tecla que foi pressionada
+    # pygame.K_RIGHT   #- tecla "seta da direita" é pressionada
 
 
 #SYS:

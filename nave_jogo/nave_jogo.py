@@ -32,6 +32,11 @@ class Nave_jogo:
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:  # quando clicar no X, para sair da tela
                 sys.exit()
+            elif evento.type == pygame.KEYDOWN:#se pressinar alguma tecla
+                if evento.key == pygame.K_RIGHT:# essa tecla é 'direita'
+                    #move a nave para a direita
+                    self.ship.ship_rect.x += 1 #objeto ship altera o valor 'x' de ship_rect
+
 
     def _update_tela(self):
         # redesenhar a tela durante cada passagem de loop
