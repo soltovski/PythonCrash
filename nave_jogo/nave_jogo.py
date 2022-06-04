@@ -24,6 +24,7 @@ class Nave_jogo:
         while True:
             #aguarda comando do teclado/mouse
             self._checa_eventos()
+            self.ship.update()
             self._update_tela()
 
 
@@ -34,8 +35,10 @@ class Nave_jogo:
                 sys.exit()
             elif evento.type == pygame.KEYDOWN:#se pressinar alguma tecla
                 if evento.key == pygame.K_RIGHT:# essa tecla é 'direita'
-                    #move a nave para a direita
-                    self.ship.ship_rect.x += 1 #objeto ship altera o valor 'x' de ship_rect
+                    self.ship.vai_para_dir = True  #move a nave para a direita
+            elif evento.type == pygame.KEYUP: #se liberou uma tecla
+                if evento.key == pygame.K_RIGHT: #se a tecla liberada foi a 'seta direita'
+                    self.ship.vai_para_dir = False
 
 
     def _update_tela(self):

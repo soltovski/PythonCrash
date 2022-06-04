@@ -19,7 +19,8 @@ pygame.display.set_caption("Nave") #- define o nome da tela
 pygame.display.flip() # dá um refresh na tela
 
 pygame.image.load('imagens/ship.bmp')  #- carrega um arquivo de imagem (surface)
-    #.imagem_nave.get_rect()           #- retorna o rect de um.bmp
+    # .imagem_nave.get_rect()           #- retorna o rect de um.bmp
+    # .ship_rect.x =+ 1                #- move a imagem da nave para direita
 
 evento = pygame.event.get() #- captura eventos de entrada de mouse/teclado
     # evento.type   #- propriedade do objeto evento que retorna seu tipo

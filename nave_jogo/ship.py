@@ -20,6 +20,14 @@ class Ship:
                                     # da figura da nave será o mesmo do rect inferior
                                     # central da tela_ship
 
+        #flag tecla continuamente pressionada
+        self.vai_para_dir = False
+
+    def update(self):
+        '''atualiza a posição da nave basedo na flag'''
+        if self.vai_para_dir:
+            self.ship_rect.x += 1
+
     def blitme(self):
         '''faz aparecer a imagem da nave na posicao indicada'''
         self.tela.blit(self.imagem_nave, self.ship_rect)
