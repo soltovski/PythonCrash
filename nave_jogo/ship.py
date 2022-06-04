@@ -22,11 +22,14 @@ class Ship:
 
         #flag tecla continuamente pressionada
         self.vai_para_dir = False
+        self.vai_para_esq = False
 
     def update(self):
         '''atualiza a posição da nave basedo na flag'''
         if self.vai_para_dir:
             self.ship_rect.x += 1
+        if self.vai_para_esq:
+            self.ship_rect.x -= 1
 
     def blitme(self):
         '''faz aparecer a imagem da nave na posicao indicada'''
