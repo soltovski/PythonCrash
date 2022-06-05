@@ -45,6 +45,8 @@ class Nave_jogo:
             self.ship.vai_para_dir = True  # move a nave para a direita
         elif evento.key == pygame.K_LEFT:  # essa tecla é esquerda
             self.ship.vai_para_esq = True
+        elif evento.key == pygame.K_q: #essa tecla é 'q'
+            sys.exit()
 
     def _check_keyup_eventos(self, evento):
         '''responde a teclas liberadas'''
