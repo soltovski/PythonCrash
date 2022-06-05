@@ -48,5 +48,6 @@ sys.exit() #- fecha a janela, tela
 # obj1.roda_jogo()       #- instância do obj1 chama o método roda_jogo, o qual
                          #- pertence à classe Nave
 
-#SPRITE
+#pygame SPRITE
 # super().__init__() # confere acesso a metódos e propriedades de uma classe pai
+# pygame.sprite.Group()    #- cria um grupo de objetos

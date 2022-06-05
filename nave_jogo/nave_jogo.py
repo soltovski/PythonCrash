@@ -2,6 +2,7 @@ import sys
 import pygame
 from settings import Settings
 from ship import Ship
+from bullet import  Bullet
 
 class Nave_jogo:
     '''classe geral que gerencia comportamento do jogo'''
@@ -21,6 +22,7 @@ class Nave_jogo:
 
         self.ship = Ship(self) #cria um objeto da classe Ship, e passa self como parâmentro
                                # que se refere à instância atual de Nave_jogo
+        self.bullets = pygame.sprite.Group() #
 
 
     def roda_jogo(self):
@@ -29,6 +31,7 @@ class Nave_jogo:
             #aguarda comando do teclado/mouse
             self._checa_eventos()
             self.ship.update()
+            self.bullets.update() #chama update para cada elemento do grupo
             self._update_tela()
 
 
@@ -51,6 +54,8 @@ class Nave_jogo:
             self.ship.vai_para_esq = True
         elif evento.key == pygame.K_q: #essa tecla é 'q'
             sys.exit()
+        elif evento.key == pygame.K_SPACE:
+            self._atira_bullet()
 
     def _check_keyup_eventos(self, evento):
         '''responde a teclas liberadas'''
@@ -59,10 +64,17 @@ class Nave_jogo:
         elif evento.key == pygame.K_LEFT:
             self.ship.vai_para_esq = False
 
+    def _atira_bullet(self):
+        '''cria uma nova bala e a adiciona ao grupo de balas'''
+        nova_bala = Bullet(self)
+        self.bullets.add(nova_bala)
+
     def _update_tela(self):
         # redesenhar a tela durante cada passagem de loop
         self.tela.fill(self.settings.tela_cor)
         self.ship.blitme()
+        for bullet in self.bullets.sprites():
+            bullet.desenha_bullet()
 
         # refresh na tela
         pygame.display.flip()

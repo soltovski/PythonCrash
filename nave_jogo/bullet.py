@@ -14,7 +14,7 @@ class Bullet(Sprite):
      #cria uma bala rect em (0,0) e então ajusta sua posição em função da posição de ship
      self.bullet_rect = pygame.Rect(0,0, self.settings.bullet_lar,
                                     self.settings.bullet_alt)
-     self.bullet_rect.midtop = parametro.ship_rect.rect.midtop
+     self.bullet_rect.midtop = parametro.ship.ship_rect.midtop
 
      #armazena a posição da bala como decimal
      self.pos_y = float(self.bullet_rect.y)
@@ -24,7 +24,7 @@ class Bullet(Sprite):
          #atualiza a posição decimal da bala
          self.pos_y -= self.settings.bullet_veloc
          #atualiza a posição rect da bala
-         self.bullet_rect.pos_y = self.pos_y
+         self.bullet_rect.y = self.pos_y
 
     def desenha_bullet(self):
         '''desenha a bala na tela'''
