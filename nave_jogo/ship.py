@@ -3,14 +3,17 @@ import pygame
 class Ship:
     '''Classe que gerencia a nave'''
 
-    def __init__(self, parametro): #referência para a instância atual.
+    def __init__(self, parametro):  # referência para a instância atual.
                                     #dá à Ship, acesso a todos os recursos
-                                    # defidos em Nave_jogo
+                                    #defidos em Nave_jogo.
+                                    # self se refere ao objeto Ship em si, já
+                                    #parametro se refere ao objeto associado ao
+                                    #__main__ de nave_jogo. É o self de nave_jogo.
         '''inicializa a nave e seta sua posicao de origem'''
         self.tela = parametro.tela # tela_ship recebe 'tela' de nave_jogo
         self.tela_rect = parametro.tela.get_rect() # atribui o rect da tela
                                     # de nave_jogo à tela_ship_rect
-        self.settings = parametro.settings #
+        self.settings = parametro.settings # self.settings agora acessa o modulo settings
 
         #carrega a imagem da nave e pega seu rect
         self.imagem_nave = pygame.image.load('imagens/ship.bmp')#carrega imagem
@@ -30,9 +33,11 @@ class Ship:
     def update(self):
         '''atualiza a posição da nave basedo na flag'''
         #atualiza o valor da posição decimal x, não do rect
-        if self.vai_para_dir:
+        #se a flag é True, E a parte direita da figura da nave aind não encontrou com
+        #a parte direita da tela:
+        if self.vai_para_dir and self.ship_rect.right < self.tela_rect.right:
             self.pos_x += self.settings.veloc_ship #movimenta a figura da nave para a direita
-        if self.vai_para_esq:
+        if self.vai_para_esq and self.ship_rect.left > 0:
             self.pos_x -= self.settings.veloc_ship   #movimenta a figura da nave para a esquerda
 
         #Atualiza o rect a partir de pos_x
