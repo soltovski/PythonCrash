@@ -32,6 +32,13 @@ class Nave_jogo:
             self._checa_eventos()
             self.ship.update()
             self.bullets.update() #chama update para cada elemento do grupo
+
+            #elimina balas que sairam da tela
+            for bala in self.bullets.copy():#não dá pra editar o for com ele rodando, então uso uma cópia
+                if bala.bullet_rect.bottom <= 0:
+                    self.bullets.remove(bala)
+            print(len(self.bullets))
+
             self._update_tela()
 
 
