@@ -7,3 +7,6 @@ class Settings:
         self.tela_lar = 600
         self.tela_alt = 400
         self.tela_cor = (230,230,230)
+
+        #preferências da nave
+        self.veloc_ship = 0.8

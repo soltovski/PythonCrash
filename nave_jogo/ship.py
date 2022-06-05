@@ -27,9 +27,9 @@ class Ship:
     def update(self):
         '''atualiza a posição da nave basedo na flag'''
         if self.vai_para_dir:
-            self.ship_rect.x += 1
+            self.ship_rect.x += 1 #movimenta a figura da nave para a direita
         if self.vai_para_esq:
-            self.ship_rect.x -= 1
+            self.ship_rect.x -= 1   #movimenta a figura da nave para a esquerda
 
     def blitme(self):
         '''faz aparecer a imagem da nave na posicao indicada'''
