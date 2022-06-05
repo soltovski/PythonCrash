@@ -1,6 +1,7 @@
 import pygame   #- importa um módulo completo, com todas suas classes
 import sys
 from settings import Settings #- import apenas uma classe de um módulo
+from pygame.sprite import Sprite #permite agrupar elementos
 
 #PYGAME:
 pygame.init() #- sempre que utilizar a biblioteca pygame
@@ -14,6 +15,8 @@ tela = pygame.display.set_mode((600,400)) #- define tamanho da tela
     #centralizar: centerx, centery, center
     #borda: top, bottom, left, right
     #outros: midbottom, midtop, midleft, midright
+
+# pygame.Rect(0,0, LARGURA, ALTURA) #-cria,na posição 0,0 um objeto de determinada lar e alt
 
 pygame.display.set_caption("Nave") #- define o nome da tela
 pygame.display.flip() # dá um refresh na tela
@@ -42,5 +45,8 @@ sys.exit() #- fecha a janela, tela
                           #- módulos
 
 # obj1 = Nave_jogo()          #- cria um objeto do tipo de clase Nave
-# obj1.roda_jogo()       #- intância do obj1 chama o método roda_jogo, o qual
+# obj1.roda_jogo()       #- instância do obj1 chama o método roda_jogo, o qual
                          #- pertence à classe Nave
+
+#SPRITE
+# super().__init__() # confere acesso a metódos e propriedades de uma classe pai
