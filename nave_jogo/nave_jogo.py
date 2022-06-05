@@ -34,17 +34,24 @@ class Nave_jogo:
             if evento.type == pygame.QUIT:  # quando clicar no X, para sair da tela
                 sys.exit()
             elif evento.type == pygame.KEYDOWN:#se pressinar alguma tecla
-                if evento.key == pygame.K_RIGHT:# essa tecla é 'direita'
-                    self.ship.vai_para_dir = True  #move a nave para a direita
-                elif evento.key == pygame.K_LEFT: #essa tecla é esquerda
-                    self.ship.vai_para_esq = True
+                self._check_keydown_eventos(evento)
 
             elif evento.type == pygame.KEYUP: #se liberou uma tecla
-                if evento.key == pygame.K_RIGHT: #se a tecla liberada foi a 'seta direita'
-                    self.ship.vai_para_dir = False
-                elif evento.key == pygame.K_LEFT:
-                    self.ship.vai_para_esq = False
+                self._check_keyup_eventos(evento)
 
+    def _check_keydown_eventos(self, evento):
+        '''responde a teclas pressionadas'''
+        if evento.key == pygame.K_RIGHT:  # essa tecla é 'direita'
+            self.ship.vai_para_dir = True  # move a nave para a direita
+        elif evento.key == pygame.K_LEFT:  # essa tecla é esquerda
+            self.ship.vai_para_esq = True
+
+    def _check_keyup_eventos(self, evento):
+        '''responde a teclas liberadas'''
+        if evento.key == pygame.K_RIGHT:  # se a tecla liberada foi a 'seta direita'
+            self.ship.vai_para_dir = False
+        elif evento.key == pygame.K_LEFT:
+            self.ship.vai_para_esq = False
 
     def _update_tela(self):
         # redesenhar a tela durante cada passagem de loop
