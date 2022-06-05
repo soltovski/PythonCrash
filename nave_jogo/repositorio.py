@@ -28,6 +28,7 @@ evento = pygame.event.get() #- captura eventos de entrada de mouse/teclado
     # pygame.KEYDOWN  #- alguma tecla é pressionada
     # evento.key    #- retorna uma tecla que foi pressionada
     # pygame.K_RIGHT   #- tecla "seta da direita" é pressionada
+    # pygame.K_q        #- tecla 'q' é pressionada
 
 
 #SYS:

@@ -12,11 +12,11 @@ class Nave_jogo:
 
         self.settings = Settings()  # cria objeto do tipo Settings
 
-        self.tela = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
-        self.settings.tela_lar = self.tela.get_rect().width
-        self.settings.tela_alt = self.tela.get_rect().height
+        #self.tela = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
+        #self.settings.tela_lar = self.tela.get_rect().width
+        #self.settings.tela_alt = self.tela.get_rect().height
 
-        #self.tela = pygame.display.set_mode((self.settings.tela_lar,self.settings.tela_alt)) #representa a tela do jogo
+        self.tela = pygame.display.set_mode((self.settings.tela_lar,self.settings.tela_alt)) #representa a tela do jogo
         pygame.display.set_caption("Nave")
 
         self.ship = Ship(self) #cria um objeto da classe Ship, e passa self como parâmentro
