@@ -48,6 +48,11 @@ sys.exit() #- fecha a janela, tela
 # obj1.roda_jogo()       #- instância do obj1 chama o método roda_jogo, o qual
                          #- pertence à classe Nave
 
+# len(vetor)  #- retorna o comprimendo, tamanho de um dado vetor
+
 #pygame SPRITE
 # super().__init__() # confere acesso a metódos e propriedades de uma classe pai
 # pygame.sprite.Group()    #- cria um grupo de objetos
+# .bullets.copy() #- cria uma cópia de um objeto tipo sprite (bullets é do tipo sprite aqui)
+# .bullets.remove(bala) #remove um valor dentro do vetor do tipo sprite
+# .bullets.add(nova_bala)   # adicona um novo valor dentro do vetor do tipo sprite

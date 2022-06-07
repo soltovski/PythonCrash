@@ -37,7 +37,7 @@ class Nave_jogo:
             for bala in self.bullets.copy():#não dá pra editar o for com ele rodando, então uso uma cópia
                 if bala.bullet_rect.bottom <= 0:
                     self.bullets.remove(bala)
-            print(len(self.bullets))
+
 
             self._update_tela()
 
@@ -73,8 +73,9 @@ class Nave_jogo:
 
     def _atira_bullet(self):
         '''cria uma nova bala e a adiciona ao grupo de balas'''
-        nova_bala = Bullet(self)
-        self.bullets.add(nova_bala)
+        if len(self.bullets) < self.settings.bullet_permit: #se o comprimento do vetor bala, for menor
+            nova_bala = Bullet(self)                #- (ainda não atingiu máx permit) que o total de balas
+            self.bullets.add(nova_bala)             #- permitidas, então crio uma nova
 
     def _update_tela(self):
         # redesenhar a tela durante cada passagem de loop
