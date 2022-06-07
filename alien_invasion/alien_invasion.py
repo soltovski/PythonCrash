@@ -4,6 +4,7 @@ import pygame
 from settings import Settings
 from ship import Ship
 from bullet import Bullet
+from alien import Alien
 
 class AlienInvasion:
     '''Classe geral para gerenciar o jogo'''
@@ -23,6 +24,9 @@ class AlienInvasion:
 
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
+        self.aliens = pygame.sprite.Group()
+
+        self._create_fleet()
 
     def run_game(self):
         '''Loop principal do jogo'''
@@ -31,6 +35,12 @@ class AlienInvasion:
             self.ship.update()
             self._update_bullets()
             self._update_screen()
+
+    def _create_fleet(self):
+        '''Cria um esquadrão de aliens'''
+        #cria um alien
+        alien = Alien(self)
+        self.aliens.add(alien) # um obj do tipo alien é add ao vetor sprite de aliens
 
 
     def _check_events(self):
@@ -85,7 +95,9 @@ class AlienInvasion:
         self.screen.fill(self.settings.bg_color)
         self.ship.blitme()
         for bullet in self.bullets.sprites():
-            bullet.draw_bullet()
+            bullet.draw_bullet() #chama a função draw_bullet de Bullet
+        self.aliens.draw(self.screen)    #desenha na surface tela
+
 
         # refresh na tela, cria a 'ilusão' de movimento
         pygame.display.flip()
