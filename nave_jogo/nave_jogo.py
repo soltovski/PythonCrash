@@ -31,14 +31,7 @@ class Nave_jogo:
             #aguarda comando do teclado/mouse
             self._checa_eventos()
             self.ship.update()
-            self.bullets.update() #chama update para cada elemento do grupo
-
-            #elimina balas que sairam da tela
-            for bala in self.bullets.copy():#não dá pra editar o for com ele rodando, então uso uma cópia
-                if bala.bullet_rect.bottom <= 0:
-                    self.bullets.remove(bala)
-
-
+            self._atualiza_bullets()
             self._update_tela()
 
 
@@ -76,6 +69,17 @@ class Nave_jogo:
         if len(self.bullets) < self.settings.bullet_permit: #se o comprimento do vetor bala, for menor
             nova_bala = Bullet(self)                #- (ainda não atingiu máx permit) que o total de balas
             self.bullets.add(nova_bala)             #- permitidas, então crio uma nova
+
+    def _atualiza_bullets(self):
+        '''atualiza a posição das balas e elimina as antigas'''
+        # atualiza a posição das balas
+        self.bullets.update()   #chama update para cada elemento do grupo
+
+        # elimina balas que sairam da tela
+        for bala in self.bullets.copy():  # não dá pra editar o for com ele rodando, então uso uma cópia
+            if bala.bullet_rect.bottom <= 0:
+                self.bullets.remove(bala)
+
 
     def _update_tela(self):
         # redesenhar a tela durante cada passagem de loop
