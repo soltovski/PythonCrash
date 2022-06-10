@@ -46,9 +46,13 @@ class AlienInvasion:
 
         #cria a primeira linha de aliens
         for alien_number in range(number_aliens_x):
-            #cria um alien e o põe na linha
+            self._create_alien(alien_number)
+
+    def _create_alien(self, alien_number):
+            '''cria um alien e o põe na linha'''
             alien = Alien(self)
-            alien.x = alien_width + 2 * alien_width * alien_number
+            alien_width = alien.rect.width
+            alien.x = alien_width + 2 * alien_width * alien_number #att a posicao x, de acordo com o num de aliens
             alien.rect.x = alien.x
             self.aliens.add(alien) # um obj do tipo alien é add ao vetor sprite de aliens
 
