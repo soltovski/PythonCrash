@@ -40,20 +40,30 @@ class AlienInvasion:
         #cria um alien e acha o numero de aliens por linha
         #espaço entre os aliens é igual à largura de um alien
         alien = Alien(self)
-        alien_width = alien.rect.width
+        alien_width, alien_height = alien.rect.size #retorna a tupla larg e altura
         avaliable_space_x = self.settings.screen_width - (2 * alien_width)
         number_aliens_x = avaliable_space_x // (2 * alien_width)
 
-        #cria a primeira linha de aliens
-        for alien_number in range(number_aliens_x):
-            self._create_alien(alien_number)
+        #determina o numero de linhas de aliens que aparecerão na tela
+        ship_height = self.ship.rect.height #pega a altura de ship
+        avaliable_space_y = (self.settings.screen_height -
+                             (3 * alien_height) - ship_height)
+        number_rows = avaliable_space_y // (2 * alien_height)
 
-    def _create_alien(self, alien_number):
+        #cria uma tela cheia de aliens
+        for row_number in range(number_rows):
+            for alien_number in range(number_aliens_x):
+                self._create_alien(alien_number, row_number)
+
+
+
+    def _create_alien(self, alien_number, row_number):
             '''cria um alien e o põe na linha'''
             alien = Alien(self)
-            alien_width = alien.rect.width
+            alien_width, alien_height = alien.rect.size
             alien.x = alien_width + 2 * alien_width * alien_number #att a posicao x, de acordo com o num de aliens
             alien.rect.x = alien.x
+            alien.rect.y = alien_height + 2 * alien.rect.height * row_number
             self.aliens.add(alien) # um obj do tipo alien é add ao vetor sprite de aliens
 
 
