@@ -1,8 +1,11 @@
 '''Criação de um jogo de corrida parecido com: https://www.youtube.com/watch?v=5Q5-QNfmsbQ'''
 import sys
 import pygame
+import random
 from config import Config
 from carro import Carro
+from veiculo import Veiculo
+
 
 class Corrida:
     '''Classe que gerencia o jogo'''
@@ -12,10 +15,16 @@ class Corrida:
         pygame.init()
         self.config = Config() #cria objeto do tipo Config
 
+
         self.tela = pygame.display.set_mode((self.config.tela_lar,self.config.tela_alt))
         pygame.display.set_caption("Corrida")
 
         self.carro_driver = Carro(self)#cria obj do tipo Carro, já passando suas propriedades
+
+        self.veiculos = pygame.sprite.Group()
+        self._cria_frota()
+
+
 
     def roda_jogo(self):
         '''loop principal do jogo'''
@@ -24,6 +33,31 @@ class Corrida:
             self._checa_eventos()
             self.carro_driver.att_pos_carro()
             self._att_tela()
+
+    def _cria_frota(self):
+        '''cria uma frota de veículos'''
+        #cria um veículo e acha o numero de veiculos por linha
+        #espaçpo entre veiculos é igual è própria largura de um veiculo
+        veiculo = Veiculo(self)
+        veic_larg = veiculo.rect.width
+        espaco_x_disp = self.config.tela_lar - (2 * veic_larg)
+        num_veic_x = espaco_x_disp // (2 * veic_larg)
+
+        #cria a primeira linha de veiculos
+        for veic_num in range(num_veic_x):
+            self._cria_veic(veic_num)
+
+
+    def _cria_veic(self, veic_num):
+        '''cria um veiculo e o põe na linha'''
+        veiculo = Veiculo(self)
+        veic_larg = veiculo.rect.width
+        veiculo.x = veic_larg + 2 * veic_larg * veic_num
+        veiculo.rect.x = veiculo.x
+        if random.randint(0, 2) == 0:  # cria quantidade aleatória de veiculos
+            self.veiculos.add(veiculo)  # quanto maior 'y', menos veiculos
+
+
 
     def _checa_eventos(self):
         #responde a eventos da teclado/mouse
@@ -52,10 +86,13 @@ class Corrida:
             self.carro_driver.flag_mov_esquerda = False
 
 
+
     def _att_tela(self):
         # att cor de fundo durante a passagem de loop
         self.tela.fill(self.config.cor_fundo)
         self.carro_driver.blitme()
+
+        self.veiculos.draw(self.tela)
 
         # dá um refresh na tela, cria ilusão de movimento
         pygame.display.flip()
