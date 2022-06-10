@@ -33,6 +33,7 @@ class AlienInvasion:
             self._check_events()
             self.ship.update()
             self._update_bullets()
+            self._update_aliens()
             self._update_screen()
 
     def _create_fleet(self):
@@ -115,6 +116,29 @@ class AlienInvasion:
             if bullet.rect.bottom <= 0:  # se o fundo da figura tocar y0
                 self.bullets.remove(bullet)
         # print(len(self.bullets)) exibe NO TERMINAL quantos bullets existem em execução
+
+
+
+    def _check_fleet_edges(self):
+        ''''responde de acordo se cada alien toca a borda'''
+        for alien in self.aliens.sprites():
+            if alien.check_edges():
+                self._change_fleet_direction()
+                break
+
+    def _change_fleet_direction(self):
+        '''toda a frota abaixa e e muda de direção'''
+        for alien in self.aliens.sprites():
+            alien.rect.y += self.settings.fleet_drop_speed
+        self.settings.fleet_direction *= -1
+
+    def _update_aliens(self):
+        '''
+        Checa de o esquadrão tocou a borda
+        Atualiza a posicao de todos os aliens do esquadrão
+        '''
+        self._check_fleet_edges()
+        self.aliens.update()
 
     def _update_screen(self):
         # atualiza as imagens da tela e tela de fundo
