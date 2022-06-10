@@ -12,7 +12,6 @@ class AlienInvasion:
     def __init__(self):
         '''Inicializa e cria os recursos do jogo'''
         pygame.init() #inicializa o background
-
         self.settings = Settings()#cria um objeto do tipo settings
 
 
@@ -24,8 +23,8 @@ class AlienInvasion:
 
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
-        self.aliens = pygame.sprite.Group()
 
+        self.aliens = pygame.sprite.Group()
         self._create_fleet()
 
     def run_game(self):
@@ -38,9 +37,21 @@ class AlienInvasion:
 
     def _create_fleet(self):
         '''Cria um esquadrão de aliens'''
-        #cria um alien
+        #cria um alien e acha o numero de aliens por linha
+        #espaço entre os aliens é igual à largura de um alien
         alien = Alien(self)
-        self.aliens.add(alien) # um obj do tipo alien é add ao vetor sprite de aliens
+        alien_width = alien.rect.width
+        avaliable_space_x = self.settings.screen_width - (2 * alien_width)
+        number_aliens_x = avaliable_space_x // (2 * alien_width)
+
+        #cria a primeira linha de aliens
+        for alien_number in range(number_aliens_x):
+            #cria um alien e o põe na linha
+            alien = Alien(self)
+            alien.x = alien_width + 2 * alien_width * alien_number
+            alien.rect.x = alien.x
+            self.aliens.add(alien) # um obj do tipo alien é add ao vetor sprite de aliens
+
 
 
     def _check_events(self):
@@ -72,6 +83,7 @@ class AlienInvasion:
         if event.key == pygame.K_LEFT:  # liberou a tecla que pressionava esquerda
             self.ship.moving_left = False
 
+
     def _fire_bullet(self):
         '''cria uma nova bala e a adiciona ao grupo de balas'''
         if len(self.bullets) < self.settings.bullets_allowed:#limita a qtd de balas em jogo
@@ -96,6 +108,7 @@ class AlienInvasion:
         self.ship.blitme()
         for bullet in self.bullets.sprites():
             bullet.draw_bullet() #chama a função draw_bullet de Bullet
+
         self.aliens.draw(self.screen)    #desenha na surface tela
 
 
@@ -106,62 +119,3 @@ if __name__ == '__main__': #não executa sozinho, apenas se chamado
     #cria uma instância e roda o jogo:
     ai = AlienInvasion()
     ai.run_game()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-'''import sys
-import pygame
-from settings import Settings
-from ship import Ship
-
-def roda_jogo():
-    #inicializa o jogo, prefencias e cria o layout (tela de objetos)
-    pygame.init()
-    ia_pref = Settings()
-    screen = pygame.display.set_mode((ia_pref.screen_largura,ia_pref.screen_altura))
-    pygame.display.set_caption("Alien Invasion")
-
-    #Cria a nave
-    ship = Ship(screen)
-
-    #define a cor da tela de fundo
-    cor_fundo=(ia_pref.cor_fundo)
-    ship.blitme()
-
-    #inicializa o loop principal do jogo
-    while True:
-
-     #aguarda entrada do teclado ou mouse
-     for event in pygame.event.get():
-          if event.type == pygame.QUIT:
-                sys.exit()
-    #recolore o fundo a cada iteração
-    screen.fill(cor_fundo)
-
-    #exibe a última tela
-    pygame.display.flip()
-
-roda_jogo()
-'''
