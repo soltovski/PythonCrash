@@ -39,21 +39,29 @@ class Corrida:
         #cria um veículo e acha o numero de veiculos por linha
         #espaçpo entre veiculos é igual è própria largura de um veiculo
         veiculo = Veiculo(self)
-        veic_larg = veiculo.rect.width
+        veic_larg, veic_alt = veiculo.rect.size
         espaco_x_disp = self.config.tela_lar - (2 * veic_larg)
         num_veic_x = espaco_x_disp // (2 * veic_larg)
 
-        #cria a primeira linha de veiculos
-        for veic_num in range(num_veic_x):
-            self._cria_veic(veic_num)
+        #determina o numero de linhas de veiculos que aparecerão na tela
+        carro_alt = self.carro_driver.rect.height
+        espaco_y_disp = (self.config.tela_alt -
+                         (3 * veic_alt) - carro_alt)
+        num_linhas = espaco_y_disp // (2 * veic_alt)
+
+        #cria tela cheia de veiculos
+        for num_linha in range(num_linhas):
+            for veic_num in range(num_veic_x):
+              self._cria_veic(veic_num, num_linha)
 
 
-    def _cria_veic(self, veic_num):
+    def _cria_veic(self, veic_num, num_linha):
         '''cria um veiculo e o põe na linha'''
         veiculo = Veiculo(self)
-        veic_larg = veiculo.rect.width
+        veic_larg, veic_alt = veiculo.rect.size
         veiculo.x = veic_larg + 2 * veic_larg * veic_num
         veiculo.rect.x = veiculo.x
+        veiculo.rect.y = veiculo.rect.height + 2 * veiculo.rect.height * num_linha
         if random.randint(0, 2) == 0:  # cria quantidade aleatória de veiculos
             self.veiculos.add(veiculo)  # quanto maior 'y', menos veiculos
 
