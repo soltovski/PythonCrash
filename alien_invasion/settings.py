@@ -18,20 +18,12 @@ class Settings:
         self.bullet_color = (60,60,60)
         self.bullets_allowed = 3
 
+        #preferências de aliens
+        self.alien_speed = 1.0
+        self.fleet_drop_speed = 10
+
+        #fleet_direction 1 representa 'direita'; -1 'esquerda
+        self.fleet_direction = 1
 
 
 
-
-
-
-
-
-"""class Settings():
-    #Classe que armazena todas as preferências do jogo
-
-    def __init__(self):
-       #Inicializa as preferências dos jogo
-        # Screen settings
-        self.screen_largura = 1200
-        self.screen_altura = 800
-        self.cor_fundo = (230, 230, 230)"""

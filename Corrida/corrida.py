@@ -32,6 +32,7 @@ class Corrida:
             #aguarda por eventos de teclado/mouse
             self._checa_eventos()
             self.carro_driver.att_pos_carro()
+            self._update_veiculos()
             self._att_tela()
 
     def _cria_frota(self):
@@ -93,7 +94,24 @@ class Corrida:
         elif evento.key == pygame.K_LEFT:  # a tecla da esquerda
             self.carro_driver.flag_mov_esquerda = False
 
+    def _checa_frota_borda(self):
+        '''responde se algum veiculo tocar a borda'''
+        for veiculo in self.veiculos.sprites():
+            if veiculo.checa_bordas():
+                self._muda_direcao_frota()
+                break
 
+    def _muda_direcao_frota(self):
+        '''abaixa toda a frota e muda a sua direcao'''
+        for veiculo in self.veiculos.sprites():
+            veiculo.rect.y += self.config.frota_descida_veloc
+        self.config.direcao_frota *= -1
+
+
+    def _update_veiculos(self):
+        '''Atualiza a posição de todos os veiculos na frota e checa se frota tocou borda'''
+        self._checa_frota_borda()
+        self.veiculos.update()
 
     def _att_tela(self):
         # att cor de fundo durante a passagem de loop

@@ -10,3 +10,8 @@ class Config:
 
         #configurações do carro
         self.carro_veloc = 0.8 #ponto flutuante
+
+        #preferências de veiculo
+        self.veic_veloc = 0.2
+        self.frota_descida_veloc = 10
+        self.direcao_frota = 1 # 1 para direita, -1 para esquerda
