@@ -117,6 +117,11 @@ class AlienInvasion:
                 self.bullets.remove(bullet)
         # print(len(self.bullets)) exibe NO TERMINAL quantos bullets existem em execução
 
+        #verifica se alguma bala atingiu algum alien
+        # se sim, elimina os dois
+        collisions = pygame.sprite.groupcollide(
+                self.bullets, self.aliens, True, True)
+
 
 
     def _check_fleet_edges(self):
